@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 
   const [service] = await sql`
     INSERT INTO services (num, title, description, tags, "priceLabel", price)
-    VALUES (${num}, ${title}, ${description}, ${JSON.stringify(tagsArr)}, ${priceLabel ?? 'Starting from'}, ${price})
+    VALUES (${num}, ${title}, ${description}, ${sql.json(tagsArr)}, ${priceLabel ?? 'Starting from'}, ${price})
     RETURNING *
   `
   return service

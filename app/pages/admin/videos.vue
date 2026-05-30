@@ -82,7 +82,16 @@ const load = async () => {
   videos.value = await $fetch<Video[]>('/api/admin/videos')
 }
 
-onMounted(load)
+onMounted(async () => {
+  try {
+    await load()
+  }
+  catch (e: any) {
+    if (e?.status === 401 || e?.response?.status === 401) {
+      await navigateTo('/admin/login')
+    }
+  }
+})
 
 const onFileChange = (e: Event) => {
   selectedFile.value = (e.target as HTMLInputElement).files?.[0] ?? null

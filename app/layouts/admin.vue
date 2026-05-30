@@ -9,6 +9,7 @@
         <NuxtLink to="/admin/services" class="admin-nav-link">Services</NuxtLink>
         <NuxtLink to="/admin/videos" class="admin-nav-link">Videos</NuxtLink>
         <NuxtLink to="/admin/contacts" class="admin-nav-link">Contacts</NuxtLink>
+        <NuxtLink to="/admin/account" class="admin-nav-link">Account</NuxtLink>
       </nav>
       <div class="admin-sidebar-footer">
         <NuxtLink to="/" class="admin-nav-link muted">← View site</NuxtLink>

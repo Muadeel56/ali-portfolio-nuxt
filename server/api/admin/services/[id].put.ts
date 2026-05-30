@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
   const [service] = await sql`
     UPDATE services
-    SET title = ${title}, description = ${description}, tags = ${JSON.stringify(tagsArr)},
+    SET title = ${title}, description = ${description}, tags = ${sql.json(tagsArr)},
         "priceLabel" = ${priceLabel ?? 'Starting from'}, price = ${price}
     WHERE id = ${id}
     RETURNING *

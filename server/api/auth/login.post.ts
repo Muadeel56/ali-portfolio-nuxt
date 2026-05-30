@@ -8,11 +8,14 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'Email and password are required.' })
   }
 
-  if (email !== config.adminEmail || password !== config.adminPassword) {
+  const sql = getDb()
+  const [admin] = await sql`SELECT id, email, password_hash FROM admins WHERE email = ${email} LIMIT 1`
+
+  if (!admin || !(await verifyPassword(password, admin.password_hash))) {
     throw createError({ statusCode: 401, statusMessage: 'Invalid credentials.' })
   }
 
-  const token = await signToken({ email }, config)
+  const token = await signToken({ email: admin.email }, config)
 
   setCookie(event, COOKIE_NAME, token, {
     httpOnly: true,

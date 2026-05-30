@@ -30,7 +30,14 @@ interface Contact {
 
 const contacts = ref<Contact[]>([])
 onMounted(async () => {
-  contacts.value = await $fetch<Contact[]>('/api/admin/contacts')
+  try {
+    contacts.value = await $fetch<Contact[]>('/api/admin/contacts')
+  }
+  catch (e: any) {
+    if (e?.status === 401 || e?.response?.status === 401) {
+      await navigateTo('/admin/login')
+    }
+  }
 })
 const formatDate = (s: string) => new Date(s).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 </script>

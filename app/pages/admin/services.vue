@@ -89,7 +89,16 @@ const load = async () => {
   services.value = await $fetch<Service[]>('/api/admin/services')
 }
 
-onMounted(load)
+onMounted(async () => {
+  try {
+    await load()
+  }
+  catch (e: any) {
+    if (e?.status === 401 || e?.response?.status === 401) {
+      await navigateTo('/admin/login')
+    }
+  }
+})
 
 const saveService = async () => {
   formError.value = ''
