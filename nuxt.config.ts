@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   ],
 
   runtimeConfig: {
+    databaseUrl: process.env.DATABASE_URL,
     awsRegion: process.env.AWS_REGION,
     awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
     awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -16,6 +17,9 @@ export default defineNuxtConfig({
     mailHost: process.env.MAIL_HOST,
     mailUser: process.env.MAIL_USER,
     mailPass: process.env.MAIL_PASS,
+    adminEmail: process.env.ADMIN_EMAIL,
+    adminPassword: process.env.ADMIN_PASSWORD,
+    jwtSecret: process.env.JWT_SECRET,
   },
 
   app: {

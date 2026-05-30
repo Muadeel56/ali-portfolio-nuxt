@@ -28,3 +28,6 @@ logs
 
 # Claude local settings
 .claude/settings.local.json
+
+# SQLite database
+server/db/*.sqlite

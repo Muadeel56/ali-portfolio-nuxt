@@ -91,7 +91,7 @@ const scrollToContact = () => {
 
             <Transition name="slide">
               <div v-if="active === i" class="services-section__expanded">
-                <p class="services-section__desc">{{ service.desc }}</p>
+                <p class="services-section__desc">{{ service.description }}</p>
                 <div class="services-section__tags">
                   <span v-for="tag in service.tags" :key="tag" class="services-section__tag">{{ tag }}</span>
                 </div>
